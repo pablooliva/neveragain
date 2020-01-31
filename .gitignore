@@ -1,0 +1,16 @@
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+
+# dependencies
+node_modules/*
+
+# build
+dist/*
+
+# parcel
+.cache/
+coverage/
+*.log
