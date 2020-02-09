@@ -4,7 +4,7 @@
   "name": "Never Again",
   "version": "1.0",
 
-  "description": "Never Again forget the climate criminals are, starting with Siemens #StopAdani.",
+  "description": "Reminds you who the climate criminals are, starting with Siemens.",
 
   "icons": {
     "48": "icons/border-48.png"
@@ -12,13 +12,15 @@
 
   "permissions": [
     "<all_urls>",
-    "tabs"
+    "tabs",
+    "activeTab"
   ],
 
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["neverAgain.js"]
+      "js": ["neverAgain.js"],
+      "css": ["neverAgain.css"]
     }
   ]
 

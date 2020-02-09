@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "typeRoots": ["node_modules/@types", "node_modules/web-ext-types"],
     "outDir": "./dist/",
     "sourceMap": true,
     "strict": true,
@@ -8,7 +9,8 @@
     "module": "es6",
     "moduleResolution": "node",
     "target": "es5",
-    "allowJs": true
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "./src/**/*"

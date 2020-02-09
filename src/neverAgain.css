@@ -1,0 +1,57 @@
+.na-tooltip {
+    background: #333;
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.3rem;
+    display: none;
+    z-index: 100000;
+}
+
+.na-tooltip[data-na-show] {
+    display: block;
+}
+
+#na-arrow,
+#na-arrow::before {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    z-index: -1;
+}
+
+#na-arrow::before {
+    content: '';
+    transform: rotate(45deg);
+    background: #333;
+}
+
+.na-tooltip[data-popper-placement^='top'] > #na-arrow {
+    bottom: -4px;
+}
+
+.na-tooltip[data-popper-placement^='bottom'] > #na-arrow {
+    top: -4px;
+}
+
+.na-tooltip[data-popper-placement^='left'] > #na-arrow {
+    right: -4px;
+}
+
+.na-tooltip[data-popper-placement^='right'] > #na-arrow {
+    left: -4px;
+}
+
+.a-block {
+    display: block;
+
+}
+
+.a-block:link {
+    color: #ffb300;
+}
+
+.a-block:visited {
+    color: #ffb300;
+}

@@ -6,9 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc",
-    "clean": "rm -rf dist/*",
-    "dev": "parcel watch src/index.html -- -p 8080",
-    "build": "npm run clean && parcel build src/index.html"
+    "clean": "rm -rf dist/",
+    "rename": "mv dist/neverAgain.*.js dist/neverAgain.js",
+    "move": "cp src/manifest.json dist/manifest.json && cp src/neverAgain.css dist/neverAgain.css",
+    "dev": "parcel src/index.html --no-source-maps",
+    "build": "npm run clean && parcel build src/index.html --no-source-maps && npm run rename && npm run move"
   },
   "repository": {
     "type": "git",
@@ -21,11 +23,13 @@
   },
   "homepage": "https://github.com/pablooliva/neveragain#readme",
   "dependencies": {
+    "@popperjs/core": "^2.0.4",
     "mark.js": "^8.11.1"
   },
   "devDependencies": {
     "@types/mark.js": "^8.11.5",
     "parcel-bundler": "^1.12.4",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "web-ext-types": "^3.2.1"
   }
 }
