@@ -30,7 +30,7 @@ window.onload = function() {
         tooltipElem.classList.add('na-tooltip');
         document.body.appendChild(tooltipElem);
         const link = document.createElement('a');
-        link.setAttribute('href','https://never-aga.in/redirect.php?climate_criminal=Siemens');
+        link.setAttribute('href','https://never-aga.in/route.php?climate_criminal=Siemens');
         link.innerText = 'Siemens supports the Adani coalmine.';
         link.classList.add('a-block');
         tooltipElem.appendChild(link);
