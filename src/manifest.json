@@ -7,7 +7,10 @@
   "description": "Reminds you who the climate criminals are, starting with Siemens.",
 
   "icons": {
-    "48": "icons/border-48.png"
+    "32": "icons/na-48x48-optimized.svg",
+    "48": "icons/na-48x48-optimized.svg",
+    "64": "icons/na-48x48-optimized.svg",
+    "96": "icons/na-48x48-optimized.svg"
   },
 
   "permissions": [

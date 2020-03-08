@@ -8,7 +8,7 @@
     "tsc": "tsc",
     "clean": "rm -rf dist/",
     "rename": "mv dist/neverAgain.*.js dist/neverAgain.js",
-    "move": "cp src/manifest.json dist/manifest.json && cp src/neverAgain.css dist/neverAgain.css",
+    "move": "cp src/manifest.json dist/manifest.json && cp src/neverAgain.css dist/neverAgain.css && mkdir dist/icons && cp icons/na-48x48-optimized.svg dist/icons/na-48x48-optimized.svg",
     "dev": "parcel src/index.html --no-source-maps",
     "build": "npm run clean && parcel build src/index.html --no-source-maps && npm run rename && npm run move"
   },
