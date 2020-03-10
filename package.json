@@ -6,11 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc",
+    "dev": "parcel src/index.html --no-source-maps",
     "clean": "rm -rf dist/",
     "rename": "mv dist/neverAgain.*.js dist/neverAgain.js",
-    "move": "cp src/manifest.json dist/manifest.json && cp src/neverAgain.css dist/neverAgain.css && mkdir dist/icons && cp icons/na-48x48-optimized.svg dist/icons/na-48x48-optimized.svg && cp src/privacy_policy.txt dist/privacy_policy.txt",
-    "dev": "parcel src/index.html --no-source-maps",
-    "build": "npm run clean && parcel build src/index.html --no-source-maps && npm run rename && npm run move"
+    "move-core": "cp src/neverAgain.css dist/neverAgain.css && cp src/privacy_policy.txt dist/privacy_policy.txt",
+    "move-ff": "cp src/manifestFirefox.json dist/manifest.json &&mkdir dist/icons && cp icons/na-48x48-optimized.svg dist/icons/na-48x48-optimized.svg",
+    "move-chr": "cp src/manifestChrome.json dist/manifest.json && mkdir dist/icons && cp icons/icon16.png dist/icons/icon16.png && cp icons/icon48.png dist/icons/icon48.png && cp icons/icon128.png dist/icons/icon128.png",
+    "build-core": "npm run clean && parcel build src/index.html --no-source-maps && npm run rename",
+    "build-ff": "npm run build-core && npm run move-ff && npm run move-core",
+    "build-chr": "npm run build-core && npm run move-chr && npm run move-core"
   },
   "repository": {
     "type": "git",
