@@ -10,102 +10,116 @@ interface MarkElementsArray {
     [index: string]: MarkElement
 }
 
-window.onload = function() {
-    const bd = document.getElementsByTagName('body');
-    const markInstance = new Mark(bd[0]);
-    const markElements: MarkElementsArray = {};
-    let elemIdCount = 0;
+class NeverAgain {
+    private markInstance: Mark;
+    public static markElements: MarkElementsArray;
+    public static tooltipInFocus: boolean;
+    public static elemIdCount: number;
 
-    const eachMark = function eachHighlight(elem: HTMLElement) {
-        const elemId ='na-highlight-' + elemIdCount;
+    constructor() {
+        const bd: HTMLCollectionOf<HTMLElementTagNameMap['body']> = document.getElementsByTagName('body');
+        this.markInstance = new Mark(bd[0]);
+        NeverAgain.markElements = {};
+        NeverAgain.elemIdCount = 0;
+        NeverAgain.tooltipInFocus = false;
+    }
+
+    public markAll(): void {
+        this.markInstance.mark('Siemens', {className: 'na-highlight', each: NeverAgain.eachMark, done: NeverAgain.afterMark });
+    }
+
+    public static eachMark(elem: HTMLElement): void {
+        const elemId ='na-highlight-' + NeverAgain.elemIdCount;
         elem.id = elemId;
-        markElements[elemId] = {elem: elem, popperRef: null};
-        elemIdCount++;
+        NeverAgain.markElements[elemId] = {elem: elem, popperRef: null};
+        NeverAgain.elemIdCount++;
     };
 
-    const afterMark = function afterMark() {
+    public static afterMark(): void {
         // Add tooltip element
-        const tooltipElem = document.createElement('div');
+        const tooltipElem: HTMLElement = document.createElement('div');
         tooltipElem.appendChild(document.createTextNode('Siemens contributes to climate change.'));
         tooltipElem.classList.add('na-tooltip');
         document.body.appendChild(tooltipElem);
-        const link = document.createElement('a');
+        const link: HTMLElement = document.createElement('a');
         link.setAttribute('href','https://never-aga.in/route.php?climate_criminal=Siemens');
         link.innerText = 'Siemens supports the Adani coalmine.';
         link.classList.add('a-block');
         tooltipElem.appendChild(link);
         // Add arrow to tooltip element
-        const tooltipArrowElem = document.createElement('div');
+        const tooltipArrowElem: HTMLElement = document.createElement('div');
         tooltipArrowElem.id = 'na-arrow';
         tooltipArrowElem.setAttribute('data-popper-arrow', '');
         tooltipElem.appendChild(tooltipArrowElem);
 
-        let tooltipInFocus = false;
+        NeverAgain.tooltipInFocus = false;
 
-        const showEvents = ['mouseenter', 'focus'];
-        const hideEvents = ['mouseleave', 'blur'];
-
-        function create(elemId: string) {
-            tooltipElem.setAttribute('data-na-show', '');
-            tooltipElem.setAttribute('data-na-referrer', elemId);
-            markElements[elemId].popperRef = createPopper(markElements[elemId].elem, tooltipElem, {
-                modifiers: [
-                    {
-                        name: 'offset',
-                        options: {
-                            offset: [0, 8],
-                        },
-                    },
-                ],
-            });
-
-        }
-
-        function destroy(elemId: string, fromTooltip: boolean = false) {
-            if (fromTooltip) {
-                destroyCore(elemId);
-            } else {
-                setTimeout(() => {
-                    if (!tooltipInFocus && markElements[elemId].popperRef) {
-                        destroyCore(elemId);
-                    }
-                }, 500);
-            }
-        }
-
-        function destroyCore(elemId: string) {
-            tooltipInFocus = false;
-            tooltipElem.removeAttribute('data-na-show');
-            tooltipElem.removeAttribute('data-na-referrer');
-            markElements[elemId].popperRef.destroy();
-            markElements[elemId].popperRef = null;
-        }
+        const showEvents: string[] = ['mouseenter', 'focus'];
+        const hideEvents: string[] = ['mouseleave', 'blur'];
 
         showEvents.forEach(showEvent => {
-            Object.keys(markElements).forEach(mElemId => {
-                markElements[mElemId].elem.addEventListener(showEvent, () => {
-                    create(mElemId);
+            Object.keys(NeverAgain.markElements).forEach(mElemId => {
+                NeverAgain.markElements[mElemId].elem.addEventListener(showEvent, () => {
+                    NeverAgain.create(mElemId, tooltipElem);
                 });
             });
 
             tooltipElem.addEventListener(showEvent, () => {
-                tooltipInFocus = true;
+                NeverAgain.tooltipInFocus = true;
             });
 
         });
 
         hideEvents.forEach(hideEvent => {
-            Object.keys(markElements).forEach(mElemId => {
-                markElements[mElemId].elem.addEventListener(hideEvent, () => {
-                    destroy(mElemId);
+            Object.keys(NeverAgain.markElements).forEach(mElemId => {
+                NeverAgain.markElements[mElemId].elem.addEventListener(hideEvent, () => {
+                    NeverAgain.destroy(mElemId, tooltipElem);
                 });
             });
 
             tooltipElem.addEventListener(hideEvent, () => {
-                destroy(<string>tooltipElem.getAttribute('data-na-referrer'), true);
+                NeverAgain.destroy(<string>tooltipElem.getAttribute('data-na-referrer'), tooltipElem, true);
             });
         });
     };
 
-    markInstance.mark('Siemens', {className: 'na-highlight', each: eachMark, done: afterMark });
+    public static create(elemId: string, tooltipElem: HTMLElement) {
+        tooltipElem.setAttribute('data-na-show', '');
+        tooltipElem.setAttribute('data-na-referrer', elemId);
+        NeverAgain.markElements[elemId].popperRef = createPopper(NeverAgain.markElements[elemId].elem, tooltipElem, {
+            modifiers: [
+                {
+                    name: 'offset',
+                    options: {
+                        offset: [0, 8],
+                    },
+                },
+            ],
+        });
+    }
+
+    public static destroy(elemId: string, tooltipElem: HTMLElement, fromTooltip: boolean = false) {
+        if (fromTooltip) {
+            NeverAgain.destroyCore(elemId, tooltipElem);
+        } else {
+            setTimeout(() => {
+                if (!NeverAgain.tooltipInFocus && NeverAgain.markElements[elemId].popperRef) {
+                    NeverAgain.destroyCore(elemId, tooltipElem);
+                }
+            }, 500);
+        }
+    }
+
+    public static destroyCore(elemId: string, tooltipElem: HTMLElement) {
+        NeverAgain.tooltipInFocus = false;
+        tooltipElem.removeAttribute('data-na-show');
+        tooltipElem.removeAttribute('data-na-referrer');
+        NeverAgain.markElements[elemId].popperRef.destroy();
+        NeverAgain.markElements[elemId].popperRef = null;
+    }
+}
+
+window.onload = function() {
+    const neverAgain = new NeverAgain();
+    neverAgain.markAll();
 };
