@@ -2,7 +2,7 @@
 
   "manifest_version": 2,
   "name": "Never Again",
-  "version": "1.1",
+  "version": "1.2",
 
   "description": "Reminds you who the climate criminals are, starting with Siemens.",
 
@@ -21,6 +21,7 @@
 
   "content_scripts": [
     {
+      "exclude_matches": ["*://*.mattermost.com/*"],
       "matches": ["<all_urls>"],
       "js": ["neverAgain.js"],
       "css": ["neverAgain.css"]
