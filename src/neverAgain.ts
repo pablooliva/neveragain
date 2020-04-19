@@ -119,7 +119,5 @@ class NeverAgain {
     }
 }
 
-window.onload = function() {
-    const neverAgain = new NeverAgain();
-    neverAgain.markAll();
-};
+const neverAgain = new NeverAgain();
+neverAgain.markAll();
