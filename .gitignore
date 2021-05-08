@@ -12,5 +12,6 @@ dist/*
 
 # parcel
 .cache/
+.parcel-cache/
 coverage/
 *.log

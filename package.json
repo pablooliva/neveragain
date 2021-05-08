@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "Never Again forget who the climate criminals are, starting with Siemens #StopAdani.",
   "main": "src/neverAgain.ts",
+  "targets": {
+    "main": false
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc",
     "dev": "parcel src/index.html --no-source-maps",
     "clean": "rm -rf dist/",
-    "rename": "mv dist/neverAgain.*.js dist/neverAgain.js",
+    "rename": "mv dist/index.*.js dist/neverAgain.js",
     "move-core": "cp src/neverAgain.css dist/neverAgain.css && cp src/privacy_policy.txt dist/privacy_policy.txt",
     "move-ff": "cp src/manifestFirefox.json dist/manifest.json &&mkdir dist/icons && cp icons/na-48x48-optimized.svg dist/icons/na-48x48-optimized.svg",
     "move-chr": "cp src/manifestChrome.json dist/manifest.json && mkdir dist/icons && cp icons/icon16.png dist/icons/icon16.png && cp icons/icon48.png dist/icons/icon48.png && cp icons/icon128.png dist/icons/icon128.png",
@@ -27,13 +30,13 @@
   },
   "homepage": "https://github.com/pablooliva/neveragain#readme",
   "dependencies": {
-    "@popperjs/core": "^2.0.4",
+    "@popperjs/core": "^2.9.2",
     "mark.js": "^8.11.1"
   },
   "devDependencies": {
     "@types/mark.js": "^8.11.5",
-    "parcel-bundler": "^1.12.4",
-    "typescript": "^3.7.5",
+    "parcel": "^2.0.0-beta.2",
+    "typescript": "^4.2.4",
     "web-ext-types": "^3.2.1"
   }
 }
