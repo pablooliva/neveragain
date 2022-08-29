@@ -4,9 +4,6 @@
   "description": "Never Again forget who the climate criminals are, starting with Siemens #StopAdani.",
   "source": "src/neverAgain.ts",
   "main": "dist/neverAgain.js",
-  "targets": {
-    "main": false
-  },
   "scripts": {
     "tsc": "tsc",
     "clean": "rm -rf dist/",
