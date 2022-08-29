@@ -4,6 +4,12 @@
   "description": "Never Again forget who the climate criminals are, starting with Siemens #StopAdani.",
   "source": "src/neverAgain.ts",
   "main": "dist/neverAgain.js",
+  "targets": {
+    "main": {
+      "includeNodeModules": true,
+      "optimize": false
+    }
+  },
   "scripts": {
     "tsc": "tsc",
     "clean": "rm -rf dist/",
@@ -29,6 +35,7 @@
     "mark.js": "^8.11.1"
   },
   "devDependencies": {
+    "@parcel/validator-typescript": "^2.7.0",
     "@types/mark.js": "^8.11.5",
     "@types/webextension-polyfill": "^0.9.0",
     "parcel": "^2.7.0",
