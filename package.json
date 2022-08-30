@@ -7,7 +7,7 @@
   "targets": {
     "main": {
       "includeNodeModules": true,
-      "optimize": false
+      "optimize": true
     }
   },
   "scripts": {
@@ -16,7 +16,7 @@
     "move-core": "cp src/neverAgain.css dist/neverAgain.css && cp src/privacy_policy.txt dist/privacy_policy.txt",
     "move-ff": "cp src/manifestFirefox.json dist/manifest.json && mkdir dist/icons && cp icons/na-48x48-optimized.svg dist/icons/na-48x48-optimized.svg",
     "move-chr": "cp src/manifestChrome.json dist/manifest.json && mkdir dist/icons && cp icons/icon16.png dist/icons/icon16.png && cp icons/icon48.png dist/icons/icon48.png && cp icons/icon128.png dist/icons/icon128.png",
-    "build-core": "npm run clean && parcel build --no-source-maps",
+    "build-core": "npm run clean && parcel build",
     "build-ff": "npm run build-core && npm run move-ff && npm run move-core",
     "build-chr": "npm run build-core && npm run move-chr && npm run move-core"
   },
